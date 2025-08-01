@@ -41,4 +41,30 @@ function addTabFocus() {
     console.log("Tab focus attributes and event listeners added");
 }
 
+function adjustLayout() {
+  const screenWidth = window.innerWidth;
+
+  // Mobile-first default (already styled with CSS)
+  if (screenWidth >= 768) {
+    // Tablet layout tweaks
+    document.body.classList.add('tablet-layout');
+    document.body.classList.remove('mobile-layout');
+  }
+
+  if (screenWidth >= 1024) {
+    // Desktop layout tweaks
+    document.body.classList.add('desktop-layout');
+    document.body.classList.remove('tablet-layout');
+  }
+
+  if (screenWidth < 768) {
+    // Keep mobile layout
+    document.body.classList.add('mobile-layout');
+    document.body.classList.remove('desktop-layout');
+  }
+}
+
+// Trigger on page load and resize
+window.addEventListener('load', adjustLayout);
+window.addEventListener('resize', adjustLayout);
 window.onload = addTabFocus;
